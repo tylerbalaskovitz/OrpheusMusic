@@ -1,11 +1,17 @@
 package com.revature.models;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.revature.models.dto.Orpheus_User_DTO;
 
@@ -19,7 +25,7 @@ import com.revature.models.dto.Orpheus_User_DTO;
 
 // generates a table and object for spring API called: orpheus_user
 @Entity
-public class orpheus_user {
+public class orpheus_user implements UserDetails {
 	
 	//it is generally RESTFUL convention to use long for the pk. we won't need it, but it's just good
 	// practice to do the right thing. The below lines set it as serial in h2 DB
@@ -130,5 +136,30 @@ public class orpheus_user {
 			user.setPassword(userDTO.getPassword());
 			user.setEmail(userDTO.getEmail());
 			return user;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
