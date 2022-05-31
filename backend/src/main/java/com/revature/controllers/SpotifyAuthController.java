@@ -2,14 +2,16 @@ package com.revature.controllers;
 
 import java.net.URI;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.SpotifyHttpManager;
+import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeUriRequest;
 
 @RestController
-@RequestMapping("/spotifyAPI")
+@RequestMapping("/spotifyapi")
 public class SpotifyAuthController {
 	private static final URI redirectURI = SpotifyHttpManager.makeUri(null);
 	private String code;
@@ -22,5 +24,15 @@ public class SpotifyAuthController {
 	
 	
 			
+@GetMapping("login")
+public String SpotifyAuthLogin() {
+	AuthorizationCodeUriRequest authorizationCodeUriRequest = spotifyApi.authorizationCodeUri()
+			.scope("user-read-private, user-read-email, user-top-read")
+			.show_dialog(true)
+			
+			.build();
+	return null;
+}
 
 }
+
