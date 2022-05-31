@@ -47,6 +47,14 @@ public ResponseEntity<Orpheus_User_DTO> addUser(@RequestBody final Orpheus_User_
 
 
 	}
+
+@GetMapping
+public ResponseEntity<List<Orpheus_User_DTO>> getUsers(){
+	List<orpheus_user> returnedList = userService.getUsers();
+	List<Orpheus_User_DTO> RespList = returnedList.stream().map(Orpheus_User_DTO::from).collect(Collectors.toList());
+	return new ResponseEntity<List<Orpheus_User_DTO>>(RespList,HttpStatus.OK);
+
+}
 	}
 	
 
