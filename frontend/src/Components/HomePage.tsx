@@ -11,12 +11,12 @@ const navigate = useNavigate();
 const handleChange = (e:any) => {
     if (e.target.name === "logout") {
         navigate("/")
-}
+    }
 
-return(
-    <div>
-        <input type="text" placeholder="Search..."></input>
-    </div>
+    return (
+        <div>
+            <input type="text" placeholder="Search..."></input>
+        </div>
 
     <div>
         <button id="logout-button" name="logout" onClick={handleChange}>LOG OUT</button>
