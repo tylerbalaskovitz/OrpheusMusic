@@ -137,7 +137,7 @@ public class orpheus_user {
 			orpheus_user user = new orpheus_user();
 			user.setUser_id(userDTO.getUser_id());
 			user.setFirst_name(userDTO.getFirst_name());
-			user.setFirst_name(userDTO.getLast_name());
+			user.setLast_name(userDTO.getLast_name());
 			user.setUsername(userDTO.getUsername());
 			user.setPassword(userDTO.getPassword());
 			user.setEmail(userDTO.getEmail());
