@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.revature.models.dto.Orpheus_User_DTO;
 
@@ -127,13 +128,13 @@ public class orpheus_user implements UserDetails {
 	}
 		
 	public static orpheus_user from(Orpheus_User_DTO userDTO) {
-		
+			
 			orpheus_user user = new orpheus_user();
 			user.setUser_id(userDTO.getUser_id());
 			user.setFirst_name(userDTO.getFirst_name());
-			user.setFirst_name(userDTO.getLast_name());
+			user.setLast_name(userDTO.getLast_name());
 			user.setUsername(userDTO.getUsername());
-			user.setPassword(userDTO.getPassword());
+			user.setPassword(new BCryptPasswordEncoder().encode(userDTO.getPassword()));
 			user.setEmail(userDTO.getEmail());
 			return user;
 	}

@@ -15,8 +15,8 @@ public long user_id;
 	private String first_name;
 	private String last_name;
 	private String email;
-	private String username;
-	private String password;
+	private String username ="";
+	private String password = "";
 	private String phone;
 	public long getUser_id() {
 		return user_id;

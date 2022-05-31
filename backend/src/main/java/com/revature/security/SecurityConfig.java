@@ -16,9 +16,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.google.gson.Gson;
@@ -69,7 +71,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     
                 }
             })
+            .failureHandler(new AuthenticationFailureHandler() {
 
+				@Override
+				public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+						AuthenticationException exception) throws IOException, ServletException {
+					// TODO Auto-generated method stub
+					
+					System.out.println();
+					response.setStatus(403);
+				}
+            	
+            })
 
             .and()
             .logout()
