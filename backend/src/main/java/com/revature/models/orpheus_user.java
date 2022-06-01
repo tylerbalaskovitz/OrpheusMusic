@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import com.revature.models.dto.Orpheus_User_DTO;
@@ -42,7 +44,9 @@ public class orpheus_user {
 	private String password;
 	private String phone;
 	
-	@OneToMany(targetEntity=Playlist.class, mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)    
+	@OneToMany	
+	@JoinTable(name="USER_PLAYLISTS",joinColumns = @JoinColumn(name="playlist_id"),
+			inverseJoinColumns = @JoinColumn( name="user_id"))
 	private List<Playlist> userPlaylists  = new ArrayList<>();
 	
 	
