@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.revature.models.dto.Orpheus_User_DTO;
@@ -43,6 +44,11 @@ public class orpheus_user {
 	private String username;
 	private String password;
 	private String phone;
+	
+	@ManyToOne()
+	@JoinColumn(name="subscription_id", referencedColumnName = "subscription_id")	
+	Subscription subscription;
+	
 	
 	@OneToMany	
 	@JoinTable(name="USER_PLAYLISTS",joinColumns = @JoinColumn(name="playlist_id"),

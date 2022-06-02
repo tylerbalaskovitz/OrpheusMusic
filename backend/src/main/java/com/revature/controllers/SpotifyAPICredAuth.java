@@ -48,6 +48,7 @@ ResponseEntity<String> getCredentialToken(){
 		      // Set access token for further "spotifyApi" object usage
 		      spotifyApi.setAccessToken(clientCredentials.getAccessToken());
 		      
+		   
 		      System.out.println("Expires in: " + clientCredentials.getExpiresIn());
 		      
 		    } catch (CompletionException e) {
