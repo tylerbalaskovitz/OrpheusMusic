@@ -60,3 +60,4 @@ List<Track> playlistTracks = new ArrayList<>();
 @ManyToOne()
 @JoinColumn(name="user_id", referencedColumnName = "user_id", insertable = false, updatable = false)    
 private orpheus_user user;
+}
