@@ -12,6 +12,7 @@ const initialState:AppState = {
         password:"",
         phone:0
     }}
+
 export const store = configureStore({
     reducer
 })
