@@ -1,5 +1,12 @@
 package com.revature.models;
 
-public class Cart {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Cart {
+@Id
+private long cart_id;
+private long user_id;
+private String created_time;
 }

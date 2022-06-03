@@ -21,4 +21,5 @@ private long subscription_id;
 List<orpheus_user> users;
 
 private String subscription_desc;
+private double price;
 }
