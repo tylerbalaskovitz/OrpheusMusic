@@ -9,13 +9,17 @@ export const HomePage: React.FC <any> = () => {
 const navigate = useNavigate();
 
 const handleChange = (e:any) => {
+    if (e.target.name === "logout") {
+        navigate("/")
+    }
 
-}
+    return (
+        <div>
+            <input type="text" placeholder="Search..."></input>
+        </div>
 
-return(
     <div>
-        <input type="text" placeholder="Search..."></input>
-
+        <button id="logout-button" name="logout" onClick={handleChange}>LOG OUT</button>
     </div>
 )
 
