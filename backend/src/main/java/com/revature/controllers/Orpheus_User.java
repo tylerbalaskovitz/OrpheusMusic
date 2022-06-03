@@ -43,9 +43,24 @@ public class Orpheus_User {
 	//this is for spring security 
 	//@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')") 
 public ResponseEntity<Orpheus_User_DTO> addUser(@RequestBody final Orpheus_User_DTO userDTO){
-		orpheus_user user = userService.addUser(orpheus_user.from(userDTO));
-		return new ResponseEntity<>(Orpheus_User_DTO.from(user),HttpStatus.OK);
-
+	String s = "";
+	boolean b = userDTO.getUsername() != null && !userDTO.getUsername().equals(s);
+	//System.out.println(b);
+	//System.out.println(userDTO.getUsername());
+	
+		if (userDTO.getPassword() != null && !userDTO.getPassword().equals(s) && b) {
+			orpheus_user user = userService.addUser(orpheus_user.from(userDTO));
+			//System.out.println(user);
+			if (user != null) {
+				return new ResponseEntity<>(Orpheus_User_DTO.from(user), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+			} 
+		}else {
+			System.out.println("-- username or password is null");
+			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+		}
+		
 
 	}
 

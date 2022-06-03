@@ -2,6 +2,8 @@ package com.revature.models.dto;
 
 import java.util.stream.Collectors;
 
+import org.springframework.boot.json.GsonJsonParser;
+
 import com.revature.models.orpheus_user;
 
 public class Orpheus_User_DTO {
@@ -13,8 +15,8 @@ public long user_id;
 	private String first_name;
 	private String last_name;
 	private String email;
-	private String username;
-	private String password;
+	private String username ="";
+	private String password = "";
 	private String phone;
 	public long getUser_id() {
 		return user_id;
@@ -83,6 +85,17 @@ public long user_id;
 		userDTO.setEmail(user.getEmail());
 		
 		return userDTO;
+	}
+	@Override
+	public String toString() {
+		
+		return "{\"user_id\" : \"" + user_id + "\""+
+				", \"first_name\" : \"" + first_name + "\""+
+				", \"last_name\" : \"" + last_name +"\""+
+				", \"email\" : \"" + email + "\""+
+				", \"username\" : \"" + username + "\""+
+				", \"password\" : \"" + password + "\""+
+				", \"phone\" : \"" + phone + "\"}";
 	}
 
 }

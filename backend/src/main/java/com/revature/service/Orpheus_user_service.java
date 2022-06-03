@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.persistence.NonUniqueResultException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,20 @@ private final orpheus_user_repository userRepository;
 }
 	
 	public orpheus_user addUser(orpheus_user user) {
-		return userRepository.save(user);
+		
+		if(user.getPassword() == null) {
+			
+			return null;
+		}
+		if(!userRepository.existsByUsername(user.getUsername()) && user.getUsername() != null) {
+			System.out.println("-- added user to database: " + user);
+			return userRepository.save(user);
+				
+		}else {
+			System.out.println("-- username already exists");
+			return null;
+		}
+		
 	}
 	
 	public List<orpheus_user> getUsers(){
