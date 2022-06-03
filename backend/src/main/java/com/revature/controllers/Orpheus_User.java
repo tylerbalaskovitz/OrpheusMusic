@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.revature.models.orpheus_user;
 import com.revature.models.dto.Orpheus_User_DTO;
 import com.revature.service.Orpheus_user_service;
@@ -62,6 +63,24 @@ public ResponseEntity<Orpheus_User_DTO> addUser(@RequestBody final Orpheus_User_
 		
 
 	}
+
+@GetMapping
+public ResponseEntity<List<Orpheus_User_DTO>> getUsers(){
+	List<orpheus_user> returnedList = userService.getUsers();
+	List<Orpheus_User_DTO> RespList = returnedList.stream().map(Orpheus_User_DTO::from).collect(Collectors.toList());
+	return new ResponseEntity<List<Orpheus_User_DTO>>(RespList,HttpStatus.OK);
+
+}
+@GetMapping(value= "{id}")
+//@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')") 
+
+public ResponseEntity<Orpheus_User_DTO> getUser(@PathVariable final Long id) {
+orpheus_user user = userService.getUserbyID(id);
+return new ResponseEntity<>(Orpheus_User_DTO.from(user),HttpStatus.OK);
+}
+
+
+
 	}
 	
 

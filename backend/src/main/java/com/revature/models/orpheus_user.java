@@ -1,13 +1,21 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,7 +51,21 @@ public class orpheus_user implements UserDetails {
 	private String username;
 	private String password;
 	private String phone;
-
+	
+	@ManyToOne()
+	@JoinColumn(name="subscription_id", referencedColumnName = "subscription_id")	
+	Subscription subscription;
+	
+	
+	@OneToMany	
+	@JoinTable(name="USER_PLAYLISTS",joinColumns = @JoinColumn(name="playlist_id"),
+			inverseJoinColumns = @JoinColumn( name="user_id"))
+	private List<Playlist> userPlaylists  = new ArrayList<>();
+	
+	
+	
+	
+	
 	
 	
 	public orpheus_user() {
