@@ -4,12 +4,14 @@ import { AppState } from "./types";
 
 const initialState:AppState = {
     user: {
-        id:0,
+        user_id:0,
+        first_name:"",
+        last_name:"",
+        email:"",
         username:"",
-        password:""
-    },
-    
-}
+        password:"",
+        phone:0
+    }}
 
 export const store = configureStore({
     reducer

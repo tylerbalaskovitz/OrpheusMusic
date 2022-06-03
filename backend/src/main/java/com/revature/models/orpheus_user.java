@@ -1,11 +1,26 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.revature.models.dto.Orpheus_User_DTO;
 
@@ -19,7 +34,7 @@ import com.revature.models.dto.Orpheus_User_DTO;
 
 // generates a table and object for spring API called: orpheus_user
 @Entity
-public class orpheus_user {
+public class orpheus_user implements UserDetails {
 	
 	//it is generally RESTFUL convention to use long for the pk. we won't need it, but it's just good
 	// practice to do the right thing. The below lines set it as serial in h2 DB
@@ -36,7 +51,21 @@ public class orpheus_user {
 	private String username;
 	private String password;
 	private String phone;
-
+	
+	@ManyToOne()
+	@JoinColumn(name="subscription_id", referencedColumnName = "subscription_id")	
+	Subscription subscription;
+	
+	
+	@OneToMany	
+	@JoinTable(name="USER_PLAYLISTS",joinColumns = @JoinColumn(name="playlist_id"),
+			inverseJoinColumns = @JoinColumn( name="user_id"))
+	private List<Playlist> userPlaylists  = new ArrayList<>();
+	
+	
+	
+	
+	
 	
 	
 	public orpheus_user() {
@@ -121,14 +150,39 @@ public class orpheus_user {
 	}
 		
 	public static orpheus_user from(Orpheus_User_DTO userDTO) {
-		
+			
 			orpheus_user user = new orpheus_user();
 			user.setUser_id(userDTO.getUser_id());
 			user.setFirst_name(userDTO.getFirst_name());
-			user.setFirst_name(userDTO.getLast_name());
+			user.setLast_name(userDTO.getLast_name());
 			user.setUsername(userDTO.getUsername());
-			user.setPassword(userDTO.getPassword());
+			user.setPassword(new BCryptPasswordEncoder().encode(userDTO.getPassword()));
 			user.setEmail(userDTO.getEmail());
 			return user;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

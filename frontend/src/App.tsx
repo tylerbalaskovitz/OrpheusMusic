@@ -1,11 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Login } from './Components/Login/Login';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Router>
+          <Routes path ="/" element={<Login/>}/>
+        </Routes>
+        </Router>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -22,5 +28,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

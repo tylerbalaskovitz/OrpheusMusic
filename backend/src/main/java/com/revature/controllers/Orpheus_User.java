@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.revature.models.orpheus_user;
 import com.revature.models.dto.Orpheus_User_DTO;
 import com.revature.service.Orpheus_user_service;
@@ -42,11 +43,44 @@ public class Orpheus_User {
 	//this is for spring security 
 	//@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')") 
 public ResponseEntity<Orpheus_User_DTO> addUser(@RequestBody final Orpheus_User_DTO userDTO){
-		orpheus_user user = userService.addUser(orpheus_user.from(userDTO));
-		return new ResponseEntity<>(Orpheus_User_DTO.from(user),HttpStatus.OK);
-
+	String s = "";
+	boolean b = userDTO.getUsername() != null && !userDTO.getUsername().equals(s);
+	//System.out.println(b);
+	//System.out.println(userDTO.getUsername());
+	
+		if (userDTO.getPassword() != null && !userDTO.getPassword().equals(s) && b) {
+			orpheus_user user = userService.addUser(orpheus_user.from(userDTO));
+			//System.out.println(user);
+			if (user != null) {
+				return new ResponseEntity<>(Orpheus_User_DTO.from(user), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+			} 
+		}else {
+			System.out.println("-- username or password is null");
+			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+		}
+		
 
 	}
+
+@GetMapping
+public ResponseEntity<List<Orpheus_User_DTO>> getUsers(){
+	List<orpheus_user> returnedList = userService.getUsers();
+	List<Orpheus_User_DTO> RespList = returnedList.stream().map(Orpheus_User_DTO::from).collect(Collectors.toList());
+	return new ResponseEntity<List<Orpheus_User_DTO>>(RespList,HttpStatus.OK);
+
+}
+@GetMapping(value= "{id}")
+//@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')") 
+
+public ResponseEntity<Orpheus_User_DTO> getUser(@PathVariable final Long id) {
+orpheus_user user = userService.getUserbyID(id);
+return new ResponseEntity<>(Orpheus_User_DTO.from(user),HttpStatus.OK);
+}
+
+
+
 	}
 	
 

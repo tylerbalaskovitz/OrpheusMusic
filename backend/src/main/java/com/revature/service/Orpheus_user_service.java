@@ -5,12 +5,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.persistence.NonUniqueResultException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.orpheus_user;
+import com.revature.models.exception.UserNotFoundException;
 import com.revature.repositories.orpheus_user_repository;
 
 
@@ -25,7 +27,20 @@ private final orpheus_user_repository userRepository;
 }
 	
 	public orpheus_user addUser(orpheus_user user) {
-		return userRepository.save(user);
+		
+		if(user.getPassword() == null) {
+			
+			return null;
+		}
+		if(!userRepository.existsByUsername(user.getUsername()) && user.getUsername() != null) {
+			System.out.println("-- added user to database: " + user);
+			return userRepository.save(user);
+				
+		}else {
+			System.out.println("-- username already exists");
+			return null;
+		}
+		
 	}
 	
 	public List<orpheus_user> getUsers(){
@@ -37,10 +52,10 @@ private final orpheus_user_repository userRepository;
 	// We will talk in the morning about this here custom exception that i'm pushing
 	// but we got dem CRUD operations for users in a Playlist side sense
 	
-	 /*public orpheus_user getUserbyID(long id) {
-		return userRepository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+	 public orpheus_user getUserbyID(long id) {
+		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
 	}
-	*/
+	
 	
 	/*
 	public orpheus_user deleteUser(long id) {

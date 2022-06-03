@@ -1,11 +1,15 @@
 export interface IUser {
-    id: number;
-    username: string;
-    password: string;
+
+    user_id:number,
+    first_name:string,
+    last_name:string,
+    email:string,
+    username:string,
+    password:string,
+    phone:number
 }
 
-
 export type AppState = {
-    user: IUser, 
-    
+    user:IUser,
+
 }
