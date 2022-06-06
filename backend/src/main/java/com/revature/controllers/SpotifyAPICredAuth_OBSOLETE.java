@@ -19,7 +19,7 @@ import se.michaelthelin.spotify.requests.authorization.client_credentials.Client
 
 @RestController
 @RequestMapping("/spotifyAPI")
-public class SpotifyAPICredAuth{
+public class SpotifyAPICredAuth_OBSOLETE{
 private static final URI redirectURI = SpotifyHttpManager.makeUri("http://localhost:8080/spotifyAPI/getcode");
 	private String code = "";
 	

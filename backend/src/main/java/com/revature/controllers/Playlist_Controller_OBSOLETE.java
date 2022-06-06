@@ -15,7 +15,7 @@ import com.revature.repositories.playlist_repository;
 @RestController
 @RequestMapping("/musicapi")
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class Playlist_Controller {
+public class Playlist_Controller_OBSOLETE {
 @Autowired
 playlist_repository PlaylistRepository;
 @GetMapping("/playlists")
