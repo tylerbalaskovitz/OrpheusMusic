@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #F1B230;
+    font-size: 92px;
+    font-family: helvetica;
+  }
+  
+  h3 {
+    font-size: 24px;
+    color: #F78C2E;
+    font-family: helvetica;
+  }
+  
+  button {
+    background-color: #F1B230;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 2px;
+    color: #626268;
+    }
+    
+  img {
+    max-width: 275px;
+    margin-top: 175px;
+  }

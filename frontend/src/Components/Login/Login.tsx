@@ -39,32 +39,21 @@ export const Login: React.FC<any> = () => {
         }
     }, [appState.user.id])
 
-    return(
-        <div className="login">
-            <header>
-                <h1>WELCOME TO ORPHEUS!</h1>
-            </header>
-            <div className="text-container">
-                <h3 className="sign-in">SIGN IN BELOW TO START BLASTING</h3>
 
-                <span className="input-container">
-                    <p>USERNAME</p>
-                    <input className="username-form" type="text" name="username"  onChange={handleChange} />
-                </span>
-                <span className="input-container">
-                    <p>PASSWORD</p>
-                    <input className="password-form" type="password" name="password" onChange={handleChange} />
-                </span>
-                <div className="loginbutton-padding">
-                    <button className="login-button" onClick={login}>LOGIN</button>
-                    <h3></h3>
-                    <button className="signup-button" name="signup-button" onClick={handleChange}>SIGN UP</button>
+    return (
+        <img src="https://user-images.githubusercontent.com/102433425/171229552-93909e1e-24b0-4ca6-8510-2286dead5575.png">
+                <h3>Please login:</h3>
+
+                <div className="input-container">
+                    <input type="text" name="username" placeholder="username" onChange={handleChange}/>
                 </div>
-            </div>
-        </div>
+                <div className="input-container">
+                    <input type="password" name="password" placeholder="password" onChange={handleChange}/>
+                </div>
 
-
+                <button className="login-button" onClick={login}>Login</button>
+                <button className="register-button" onClick={register}>Register</button>
 
 
     )
-}
+    }
