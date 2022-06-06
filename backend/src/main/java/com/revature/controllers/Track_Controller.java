@@ -1,5 +1,5 @@
 package com.revature.controllers;
 
-public class Track {
+public class Track_Controller {
 
 }

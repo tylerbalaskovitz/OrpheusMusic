@@ -22,6 +22,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import com.revature.models.Playlist;
+=======
+>>>>>>> 111e0995801b31965e0e2a708e33df9c34521155
+=======
+import com.revature.models.Playlist_OBSOLETE;
+>>>>>>> 7b2f5fe37412ae2a1fa38f49f280ccb76d5c9509
 import com.revature.models.dto.Orpheus_User_DTO;
 
 
@@ -46,6 +54,18 @@ public class orpheus_user implements UserDetails {
 	// your standard demographic fields ready to be generated into an h2 instance
 	
 	private String first_name;
+	public Subscription getSubscription() {
+		return subscription;
+	}
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
+	}
+	public List<Playlist_OBSOLETE> getUserPlaylists() {
+		return userPlaylists;
+	}
+	public void setUserPlaylists(List<Playlist_OBSOLETE> userPlaylists) {
+		this.userPlaylists = userPlaylists;
+	}
 	private String last_name;
 	private String email;
 	private String username;
@@ -60,7 +80,7 @@ public class orpheus_user implements UserDetails {
 	@OneToMany	
 	@JoinTable(name="USER_PLAYLISTS",joinColumns = @JoinColumn(name="playlist_id"),
 			inverseJoinColumns = @JoinColumn( name="user_id"))
-	private List<Playlist> userPlaylists  = new ArrayList<>();
+	private List<Playlist_OBSOLETE> userPlaylists  = new ArrayList<>();
 	
 	
 	

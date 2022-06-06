@@ -1,9 +1,13 @@
 package com.revature.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-import com.revature.models.Playlist;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface playlist_repository extends CrudRepository<Playlist,Long>{
+import com.revature.models.Playlist_OBSOLETE;
+import com.revature.models.Track;
 
+public interface playlist_repository extends JpaRepository<Playlist_OBSOLETE,Long>{
+List <Track> getByplaylistId(long playlist_id);
+List<Playlist_OBSOLETE> findByTitleContaining(String title);
 }
