@@ -3,7 +3,7 @@ package com.revature.models.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Playlist;
+import com.revature.models.Playlist_OBSOLETE;
 import com.revature.models.Track;
 import com.revature.models.orpheus_user;
 
@@ -47,7 +47,7 @@ public PlaylistDTO() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public static PlaylistDTO from(Playlist playlist) {
+public static PlaylistDTO from(Playlist_OBSOLETE playlist) {
 	PlaylistDTO PlaylistDTO = new PlaylistDTO();
 	PlaylistDTO.setPlaylist_id(playlist.getPlaylist_id());
 	PlaylistDTO.setPlaylistTracks(playlist.getPlaylistTracks());
