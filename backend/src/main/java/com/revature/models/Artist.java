@@ -3,6 +3,7 @@ package com.revature.models;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -37,7 +38,7 @@ public void setTitle(String title) {
 }
 
 @Id
-
+@GeneratedValue
 private long artist_id;
 
 private String title;

@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Playlist {
+public class Playlist_OBSOLETE {
 @Id
 @GeneratedValue
 public long playlistId;
@@ -23,12 +23,12 @@ private String title;
 
 
 
-public Playlist() {
+public Playlist_OBSOLETE() {
 	super();
 	// TODO Auto-generated constructor stub
 }
 
-public Playlist(long playlistId, String title, List<Track> playlistTracks, orpheus_user user) {
+public Playlist_OBSOLETE(long playlistId, String title, List<Track> playlistTracks, orpheus_user user) {
 	super();
 	this.playlistId = playlistId;
 	this.title = title;

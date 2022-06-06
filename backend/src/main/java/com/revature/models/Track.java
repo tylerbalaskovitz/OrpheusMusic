@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.revature.models.Playlist;
+import com.revature.models.Playlist_OBSOLETE;
 
 @Entity
 public class Track {
@@ -36,7 +36,7 @@ public class Track {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 
 	@JsonIgnore
-	private Set<Playlist> playlists = new HashSet<>();
+	private Set<Playlist_OBSOLETE> playlists = new HashSet<>();
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 
 	@JoinTable(name = "track_artists", joinColumns = @JoinColumn(name = "artist_id"), inverseJoinColumns = @JoinColumn(name = "track_id"))
@@ -58,11 +58,11 @@ public class Track {
 		this.trackId = track_id;
 	}
 
-	public Set<Playlist> getPlaylists() {
+	public Set<Playlist_OBSOLETE> getPlaylists() {
 		return playlists;
 	}
 
-	public void setPlaylists(Set<Playlist> playlists) {
+	public void setPlaylists(Set<Playlist_OBSOLETE> playlists) {
 		this.playlists = playlists;
 	}
 
