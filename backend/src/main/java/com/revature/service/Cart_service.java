@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.models.Cart;
 import com.revature.models.Subscription;
+import com.revature.models.exception.UserNotFoundException;
 import com.revature.repositories.cart_repository;
 
 
@@ -46,24 +47,24 @@ public class Cart_service {
 		cartRepository.delete(cart);
 		return cart;
 	}
-	@Transactional
-	public Cart addSubscriptionToCart(long cart_id,long sub_id) {
-		Cart cart = getCartbyID(cart_id);
-		Subscription sub = subService.getSubscriptionbyID(sub_id);
-		
-		
-		sub.setUse));
-		return cart;
-	}
-	@Transactional
-	public RevNoteUser deleteNote(long user_id, long note_id) {
-		RevNoteUser user = getUserbyID(user_id);
-		Note note = NoteService.getNotebyID(note_id);
-		user.removeNote(note);
-		return user;
-		
-		}
+//	@Transactional
+//	public Cart addSubscriptionToCart(long cart_id,long sub_id) {
+//		Cart cart = getCartbyID(cart_id);
+//		Subscription sub = subService.getSubscriptionbyID(sub_id);
+//		
+//		
+//		sub.setUse));
+//		return cart;
+//	}
+//	@Transactional
+//	public RevNoteUser deleteNote(long user_id, long note_id) {
+//		RevNoteUser user = getUserbyID(user_id);
+//		Note note = NoteService.getNotebyID(note_id);
+//		user.removeNote(note);
+//		return user;
+//		
+//		}
 }
 
 
-}
+
