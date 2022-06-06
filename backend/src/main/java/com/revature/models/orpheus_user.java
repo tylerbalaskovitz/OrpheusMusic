@@ -22,7 +22,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+<<<<<<< HEAD
 import com.revature.models.Playlist;
+=======
+>>>>>>> 111e0995801b31965e0e2a708e33df9c34521155
 import com.revature.models.dto.Orpheus_User_DTO;
 
 

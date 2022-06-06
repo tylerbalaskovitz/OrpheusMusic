@@ -8,6 +8,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+<<<<<<< HEAD
+=======
+import javax.persistence.GenerationType;
+>>>>>>> 111e0995801b31965e0e2a708e33df9c34521155
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
